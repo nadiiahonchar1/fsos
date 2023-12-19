@@ -8,8 +8,12 @@ const invokeAction = async ({ action, id, title, author }) => {
     case "getById":
       const oneBook = await books.getById(id);
       return console.log(oneBook);
+    case "add":
+      const newBook = await books.add({ title, author });
+      return console.log(newBook);
   }
 };
-invokeAction({ action: "read" });
-invokeAction({ action: "getById", id: "e1Tpn_I3wBkLREY6wG0lb" });
-invokeAction({ action: "getById", id: "e1Tpn_I3wBkLREY6wG0lb777" });
+// invokeAction({ action: "read" });
+// invokeAction({ action: "getById", id: "e1Tpn_I3wBkLREY6wG0lb" });
+// invokeAction({ action: "getById", id: "e1Tpn_I3wBkLREY6wG0lb777" });
+invokeAction({ action: "add", title: "Worm", author: "Jhon C. McCrae" });

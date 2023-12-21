@@ -55,11 +55,21 @@ const invokeAction = async ({ action, id, title, author }) => {
 
 // ===================================================================
 // Консольний застосунок з використанням  пакету yargs
-const arr = hideBin(process.argv);
-const { argv } = yargs(arr);
-console.log(argv);
-invokeAction(argv);
+// const arr = hideBin(process.argv);
+// const { argv } = yargs(arr);
+// console.log(argv);
+// invokeAction(argv);
 // ===================================================================
 
 // ===================================================================
-// Консольний застосунок з використанням  пакету commander
+// Консольний застосунок з використанням  пакету commander (можна використовувати скорочені команди -a, -i, -t, -at)
+program
+  .option("-a, --action, <type>")
+  .option("-i, --id, <type>")
+  .option("-t, --tytle, <type>")
+  .option("-at, --author, <type>");
+
+program.parse();
+const options = program.opts();
+invokeAction(options);
+// ===================================================================

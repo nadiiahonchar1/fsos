@@ -12,7 +12,7 @@ const getAll = async () => {
 const getById = async (id) => {
   const bookId = String(id);
   const books = await getAll();
-  const result = books.find((item) => item.id === id);
+  const result = books.find((item) => item.id === bookId);
   return result || null;
 };
 
@@ -25,19 +25,21 @@ const add = async (data) => {
 };
 
 const updateById = async (id, data) => {
+  const bookId = String(id);
   const books = await getAll();
-  const index = books.findIndex((item) => item.id === id);
+  const index = books.findIndex((item) => item.id === bookId);
   if (index === -1) {
     return null;
   }
-  books[index] = { id, ...data };
+  books[index] = { bookId, ...data };
   await fs.writeFile(booksPath, JSON.stringify(books, null, 2));
   return books[index];
 };
 
 const deleteById = async (id) => {
+  const bookId = String(id);
   const books = await getAll();
-  const index = books.findIndex((item) => item.id === id);
+  const index = books.findIndex((item) => item.id === bookId);
   if (index === -1) {
     return null;
   }

@@ -1,5 +1,8 @@
 const yargs = require("yargs");
 const { hideBin } = require("yargs/helpers");
+
+const { program } = require("commander");
+
 const books = require("./books");
 
 const invokeAction = async ({ action, id, title, author }) => {
@@ -41,9 +44,9 @@ const invokeAction = async ({ action, id, title, author }) => {
 // ===================================================================
 // Консольний застосунок без використання додаткових пакетів.
 // Користувач вводить команду, наприклад node app--action read,
-// ми відстежуємо наявність ключа "--actions" та передаємо параметри в функцію invokeAction
+// ми відстежуємо наявність ключа "--action" та передаємо параметри в функцію invokeAction
 
-// const actionIndex = process.argv.indexOf("--actions");
+// const actionIndex = process.argv.indexOf("--action");
 // if (actionIndex !== -1) {
 //   const action = process.argv[actionIndex + 1];
 //   invokeAction({ action });
@@ -55,6 +58,8 @@ const invokeAction = async ({ action, id, title, author }) => {
 const arr = hideBin(process.argv);
 const { argv } = yargs(arr);
 console.log(argv);
-// invokeAction(argv);
+invokeAction(argv);
 // ===================================================================
-console.log("go");
+
+// ===================================================================
+// Консольний застосунок з використанням  пакету commander

@@ -10,6 +10,7 @@ const getAll = async () => {
 };
 
 const getById = async (id) => {
+  const bookId = String(id);
   const books = await getAll();
   const result = books.find((item) => item.id === id);
   return result || null;
